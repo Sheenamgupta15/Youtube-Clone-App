@@ -4,6 +4,7 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 
+
 const Head = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
@@ -17,7 +18,7 @@ const Head = () => {
             if (searchCache[searchQuery]) {
                 setSuggestions(searchCache[searchQuery]);
             } else {
-                getSearchSugsestions();
+                getSearchSuggestions();
             }
         }, 200);
 
@@ -26,7 +27,7 @@ const Head = () => {
         };
     }, [searchQuery]);
 
-    const getSearchSugsestions = async () => {
+    const getSearchSuggestions = async () => {
         const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
         const json = await data.json();
         //console.log(json[1]);
@@ -79,8 +80,9 @@ const Head = () => {
                     <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
                         <ul>
                             {suggestions.map((s) => (
-                                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
+                                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100 " >
                                     🔍 {s}
+
                                 </li>
                             ))}
                         </ul>
